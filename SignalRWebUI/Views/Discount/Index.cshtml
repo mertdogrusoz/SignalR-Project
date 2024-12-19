@@ -1,0 +1,69 @@
+﻿@model List<SignalRWebUI.Dtos.DiscountDtos.ResultDiscountDtos>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+
+}
+
+	<div class="container-fluid">
+		<h4 class="page-title">İndirim İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title"> İndirim Listesi</div>
+					</div>
+					<div class="card-body">
+						<div class="card-sub">
+							İndirim ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Title</th>
+									<th scope="col">Amount</th>
+									<th scope="col">Durum</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+									<th scope="col">Aktif hale getir</th>
+									<th scope="col">Pasif hale getir</th>
+
+								</tr>
+							</thead>
+							
+								<tbody>
+							@foreach (var item in Model)
+							{
+								count++;
+
+								 
+									<tr>
+										<th>@count</th>
+										<td>@item.Title</td>
+										<td>@item.Amount</td>
+										<td>@item.Status</td>
+										<td><a href="/Discount/DeleteDiscount/@item.DiscountId" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/Discount/UpdateDiscount/@item.DiscountId" class="btn btn-outline-success">Güncelle</a></td>
+									<td><a href="/Discount/ChangeStatusToTrue/@item.DiscountId" class="btn btn-outline-success">İndirim Aktif Yap</a></td>
+									<td><a href="/Discount/ChangeStatusToFalse/@item.DiscountId" class="btn btn-outline-success">İndirim Pasif Yap</a></td>
+										
+									</tr>
+
+							}
+
+							</tbody>
+							
+						</table>
+						<a href="/Discount/CreateDiscount/" class="btn btn-outline-primary">Yeni İndirim Girişi</a>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+</div>
